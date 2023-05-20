@@ -10,5 +10,28 @@
     <string name="nilaiAkhir">Nilai Akhir: %1$.2f</string>
     <string name="nilaiHuruf">Nilai Huruf: %1$s</string>
     <string name="reset">Reset</string>
-
+    <string name="nilai_a">Menjaga Nilai Tetap Baik</string>
+    <string name="nilai_b">Menjaga Dan Meningkat Nilai Sedikit Lebih Tinggi</string>
+    <string name="nilai_c">Meningkatkan Nilai</string>
+    <string name="nilai_d">Meningkatkan Nilai Lebih Tinggi</string>
+    <string name="nilai_e">Meningkatan Nilai Jauh Lebih Tinggi</string>
+    <string name="lihat_saran">Lihat Saran</string>
+    <string name="saran_a">Pertahankan semangat belajar anda stabilkan selalu!</string>
+    <string name="saran_b">Pertahankan semangat belajar anda saat ini dan tingkatkan sedikit lagi untuk nilai lebih baik!</string>
+    <string name="saran_c">Cobalah untuk tingkatkan semangat belajar anda, walau bisa dikatakan cukup namun manusia tidak pernah merasa cukup. Semangat!</string>
+    <string name="saran_d">Tingkatkan semangat belajar anda, cobalah dengan metode yang membuat anda nyaman dan bisa meningkatkan semangat belajar anda!</string>
+    <string name="saran_e">Tingkatkan jauh lebih tinggi lagi semangat belajar anda! Ingat tujuan mengapa anda ingin berkuliah. Dan cobalah metode belajar lain</string>
+    <string name="tentang_aplikasi">Tentang Aplikasi</string>
+    <string name="copyright">Nilai Mahasiswa merupakan sebuah aplikasi Android untuk
+menghitung Nilai Mahasiswa sehingga seseorang dapat mengetahui berapakah jumlah rata-rata atau hasil nilai akhir mahasiswa tersebut.\n\nAplikasi ini dibuat untuk Assessment 1 dan 2 Mobpro. Temukan kodenya di https://github.com/Dwisyifanh9113/Assessment1Mobpro.git\n\nCopyright © 2023 Dwi Syifa Novia Herdiyanti.\nAll rights reserved.</string>
+    <string name="bagikan">Bagikan</string>
+    <string name="bagikan_template"> Nama: %1$s \n%2$s \n%3$s</string>
+    <string name="belum_ada_data">Belum ada data</string>
+    <string name="histori">Histori</string>
+    <string name="hasil_x">Nilai: %1$.2f - %2$s</string>
+    <string name="data_x">NilaiAkhir: %1$.1f - NilaiHuruf: %2$.1f - %3$s</string>
+    <string name="hapus_histori">Hapus Histori</string>
+    <string name="konfirmasi_hapus">Hapus semua histori?</string>
+    <string name="hapus">Hapus</string>
+    <string name="batal">Batal</string>
 </resources>

@@ -1,5 +1,9 @@
 package org.d3if3135.mobpro1
 
+import androidx.test.core.app.ActivityScenario
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -20,5 +24,16 @@ class ExampleInstrumentedTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("org.d3if3135.mobpro1", appContext.packageName)
+    }
+
+    @Test
+    fun test_activityStart() {
+        val scenario = ActivityScenario.launch(MainActivity::class.java)
+        onView(withId(org.d3if3135.mobpro1.R.id.buttonHitung)).perform(click())
+    }
+
+    @Test
+    fun test_searchButtonFunctionality() {
+        onView(withId(org.d3if3135.mobpro1.R.id.buttonHitung)).perform(click());
     }
 }

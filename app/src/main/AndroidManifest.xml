@@ -12,7 +12,7 @@
         android:theme="@style/Theme.HelloWorld"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashScreen"
             android:exported="true"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
@@ -24,6 +24,11 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden">
+        </activity>
     </application>
 
 </manifest>
