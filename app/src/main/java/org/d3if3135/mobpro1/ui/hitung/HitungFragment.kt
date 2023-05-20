@@ -7,62 +7,31 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import org.d3if3135.mobpro1.R
 import org.d3if3135.mobpro1.databinding.FragmentHitungBinding
+import org.d3if3135.mobpro1.db.NilaiDb
 import org.d3if3135.mobpro1.model.HasilNilai
+import org.d3if3135.mobpro1.model.KategoriNilai
 
 
 class HitungFragment : Fragment() {
 
     private lateinit var binding : FragmentHitungBinding
-//    lateinit var namaMahasiswa : com.google.android.material.textfield.TextInputEditText
-//    lateinit var nilaiKehadiran : com.google.android.material.textfield.TextInputEditText
-//    lateinit var nilaiTugas : com.google.android.material.textfield.TextInputEditText
-//    lateinit var nilaiAsesmen : com.google.android.material.textfield.TextInputEditText
-//    lateinit var btnHitung : Button
-//    lateinit var btnReset : Button
-//    lateinit var nilaiAkhir : TextView
-//    lateinit var nilaiHuruf : TextView
-
     private val viewModel: HitungViewModel by lazy {
-        ViewModelProvider(requireActivity())[HitungViewModel::class.java]
+        val db = NilaiDb.getInstance(requireContext())
+        val factory = HitungViewModelFactory(db.dao)
+        ViewModelProvider(this,factory)[HitungViewModel::class.java]
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-//        super.onCreate(savedInstanceState)
         binding = FragmentHitungBinding.inflate(layoutInflater, container, false)
-
-
         setHasOptionsMenu(true)
         return binding.root
     }
 
-//        setContentView(binding.root)
-
-//        namaMahasiswa = binding.namaInp
-//        nilaiKehadiran = binding.kehadiranInp
-//        nilaiTugas = binding.tugasInp
-//        nilaiAsesmen = binding.asesmenInp
-//        btnHitung = binding.buttonHitung
-//        btnReset = binding.buttonReset
-//        nilaiAkhir = binding.nilaiAkhir
-//        nilaiHuruf = binding.nilaiHuruf
-
-//        btnHitung.setOnClickListener {
-//            hitungNilai(
-//                namaMahasiswa.text.toString(),
-//                nilaiKehadiran.text.toString(),
-//                nilaiTugas.text.toString(),
-//                nilaiAsesmen.text.toString(),
-//            )
-//        }
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        tampilkanButton(false)
         binding.buttonHitung.setOnClickListener{hitungNilai()}
         binding.buttonReset.setOnClickListener { resetHasil() }
         viewModel.getHasilNilai().observe(this, { showResult(it) })
@@ -74,9 +43,6 @@ class HitungFragment : Fragment() {
             viewModel.selesaiNavigasi()
         }
         binding.shareButton.setOnClickListener{shareData()}
-
-
-//        binding.shareButton.setOnClickListener { shareData() }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -84,10 +50,16 @@ class HitungFragment : Fragment() {
         inflater.inflate(R.menu.options_menu, menu)
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_about) {
-            findNavController().navigate(
+        when(item.itemId) {
+            R.id.menu_histori -> {
+                findNavController().navigate(
+                R.id.action_hitungFragment_to_historiFragment)
+                return true
+            }
+            R.id.menu_about -> {
+                findNavController().navigate(
                 R.id.action_hitungFragment_to_aboutFragment)
-            return true
+                return true}
         }
         return super.onOptionsItemSelected(item)
     }
@@ -106,30 +78,22 @@ class HitungFragment : Fragment() {
         }
     }
 
-//    private fun tampilkanButton(btn: Boolean) {
-//        if(!btn) {
-//            btnReset.visibility = View.INVISIBLE
-//            nilaiAkhir.visibility = View.INVISIBLE
-//            nilaiHuruf.visibility = View.INVISIBLE
-//        }else {
-//            btnReset.visibility = View.VISIBLE
-//            nilaiAkhir.visibility = View.VISIBLE
-//            nilaiHuruf.visibility = View.VISIBLE
-//        }
-//    }
 
     private fun resetHasil() {
         binding.namaInp.text?.clear()
         binding.kehadiranInp.text?.clear()
         binding.tugasInp.text?.clear()
         binding.asesmenInp.text?.clear()
-//        tampilkanButton(false)
+        binding.nilaiAkhir.visibility = View.GONE
+        binding.nilaiHuruf.visibility = View.GONE
+        binding.buttonReset.visibility = View.GONE
+        binding.saranButton.visibility = View.GONE
+        binding.shareButton.visibility = View.GONE
     }
-
 
     private fun hitungNilai() {
         // Validasi nama
-        val namaMahasiswa = binding.namaInp.text
+        val namaMahasiswa = binding.namaInp.text.toString()
         if (TextUtils.isEmpty(namaMahasiswa)) {
             Toast.makeText(context, "Harap masukkan nama!", Toast.LENGTH_LONG).show()
             return
@@ -152,11 +116,13 @@ class HitungFragment : Fragment() {
             return
         }
         viewModel.hitungNilai(
+            namaMahasiswa,
             nilaiKehadiran.toFloat(),
             nilaiTugas.toFloat(),
             nilaiAsesmen.toFloat()
         )
     }
+
     private fun showResult(result: HasilNilai?){
         if (result == null) return
         binding.buttonReset.visibility = View.VISIBLE
@@ -167,38 +133,3 @@ class HitungFragment : Fragment() {
         binding.nilaiHuruf.visibility = View.VISIBLE
     }
 }
-
-
-        // Hitung nilai
-//        val nilaiKehadiran = kehadiran.toFloat()
-//        val nilaiTugas = tugas.toFloat()
-//        val nilaiAsesmen = asesmen.toFloat()
-//
-//        var hasil = 0f
-
-//        hasil = (nilaiKehadiran + nilaiTugas + nilaiAsesmen) / 3f
-//
-//        var huruf: Char? = null
-//
-////        if (hasil >= 81 && hasil <=100) {
-////            huruf = 'A'
-////        }
-////        else if (hasil >= 61 && hasil < 80) {
-////            huruf = 'B'
-////        }
-////        else if (hasil > 41 && hasil < 60) {
-////            huruf = 'C'
-////        }
-////        else if (hasil > 21 && hasil < 40) {
-////            huruf = 'D'
-////        }
-////        else if (hasil > 0 && hasil <= 20) {
-////            huruf = 'E'
-////        }
-//        val nilaiAkhirHuruf = huruf
-//        val hasilHuruf = nilaiAkhirHuruf.toString()
-//
-//        nilaiAkhir.text = getString(R.string.nilaiAkhir, hasil)
-//        nilaiHuruf.text = getString(R.string.nilaiHuruf, hasilHuruf)
-//
-//        tampilkanButton(true)
