@@ -1,0 +1,12 @@
+[
+  { "nama" : "William James Sidis", "deskripsi" : "Skor IQ sekitar 250 hingga 300.", "gambar" : "william" },
+  { "nama" : "Johann Wolfgang von Goethe", "deskripsi" : "Skor IQ sekitar 220.", "gambar" : "johann" },
+  { "nama" : "Leonardo Da Vinci", "deskripsi" : "Skor IQ sekitar 200.", "gambar" : "leonardo" },
+  { "nama" : "Isaac Newton ", "deskripsi" : "Skor IQ sekitar 190.", "gambar" : "isaac" },
+  { "nama" : "Kim Ung Yong", "deskripsi" : "Skor IQ sekitar 210.", "gambar" : "kim" },
+  { "nama" : "Stephen Hawking", "deskripsi" : "Skor IQ sekitar 160.", "gambar" : "stephen" },
+  { "nama" : "Andrew Wiles", "deskripsi" : "Skor IQ sekitar 170.", "gambar" : "andrew" },
+  { "nama" : "Edward Witten", "deskripsi" : "Tidak ada informasi tentang IQ Edward Witten", "gambar" : "edward" },
+  { "nama" : "Albert Einstein", "deskripsi" : "Skor IQ sekitar 160.", "gambar" : "albert" },
+  { "nama" : "Galileo Galilei", "deskripsi" : "Skor IQ sekitar 180-200.", "gambar" : "galileo" }
+]
