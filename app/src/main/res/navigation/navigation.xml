@@ -25,7 +25,7 @@
     <fragment
         android:id="@+id/saranFragment"
         android:name="org.d3if3135.mobpro1.ui.SaranFragment"
-        android:label="SaranFragment"
+        android:label="Saran"
         tools:layout="@layout/fragment_saran">
         <argument
             android:name="kategori"
@@ -34,15 +34,15 @@
     <fragment
         android:id="@+id/aboutFragment"
         android:name="org.d3if3135.mobpro1.ui.AboutFragment"
-        android:label="AboutFragment"
+        android:label="Tentang Aplikasi"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/historiFragment"
         android:name="org.d3if3135.mobpro1.ui.histori.HistoriFragment"
-        android:label="HistoriFragment"
+        android:label="Histori"
         tools:layout="@layout/fragment_histori" />
     <fragment
         android:id="@+id/daftarFragment"
         android:name="org.d3if3135.mobpro1.ui.daftar.DaftarFragment"
-        android:label="DaftarFragment" />
+        android:label="Daftar Orang Terpintar" />
 </navigation>
