@@ -32,6 +32,7 @@ class HistoriAdapter : ListAdapter<NilaiEntity, HistoriAdapter.ViewHolder>(DIFF_
                 }
             }
     }
+
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
     ): ViewHolder {
@@ -39,6 +40,7 @@ class HistoriAdapter : ListAdapter<NilaiEntity, HistoriAdapter.ViewHolder>(DIFF_
         val binding = ItemHistoriBinding.inflate(inflater, parent, false)
         return ViewHolder(binding)
     }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
@@ -65,12 +67,15 @@ class HistoriAdapter : ListAdapter<NilaiEntity, HistoriAdapter.ViewHolder>(DIFF_
             val circleBg = kategoriTextView.background as GradientDrawable
             circleBg.setColor(ContextCompat.getColor(root.context, colorRes))
             tanggalTextView.text = dateFormatter.format(Date(item.tanggal))
-            nilaiAkhirTextView.text = root.context.getString(R.string.hasil_x,
-                hasilNilai.nilaiAkhir, hasilNilai.nilaiHuruf.toString())
+            nilaiAkhirTextView.text = root.context.getString(
+                R.string.hasil_x,
+                hasilNilai.nilaiAkhir, hasilNilai.nilaiHuruf.toString()
+            )
 
-            dataTextView.text = root.context.getString(R.string.data_x,
-                item.nama, item.kehadiran, item.tugas, item.asesmen)
+            dataTextView.text = root.context.getString(
+                R.string.data_x,
+                item.nama, item.kehadiran, item.tugas, item.asesmen
+            )
         }
     }
 }
-

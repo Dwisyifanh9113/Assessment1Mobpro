@@ -1,9 +1,13 @@
 package org.d3if3135.mobpro1.ui.hitung
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -12,6 +16,8 @@ import org.d3if3135.mobpro1.db.NilaiEntity
 import org.d3if3135.mobpro1.model.HasilNilai
 import org.d3if3135.mobpro1.model.KategoriNilai
 import org.d3if3135.mobpro1.model.hitungNilai
+import org.d3if3135.mobpro1.network.UpdateWorker
+import java.util.concurrent.TimeUnit
 
 class HitungViewModel(private val db: NilaiDao) : ViewModel() {
 
@@ -19,7 +25,12 @@ class HitungViewModel(private val db: NilaiDao) : ViewModel() {
     private val navigasi = MutableLiveData<KategoriNilai?>()
 
 
-    fun hitungNilai(namaMahasiswa: String,nilaiKehadiran: Float, nilaiTugas : Float, nilaiAsesmen : Float) {
+    fun hitungNilai(
+        namaMahasiswa: String,
+        nilaiKehadiran: Float,
+        nilaiTugas: Float,
+        nilaiAsesmen: Float
+    ) {
         val dataNilai = NilaiEntity(
             nama = namaMahasiswa,
             kehadiran = nilaiKehadiran,
@@ -33,27 +44,15 @@ class HitungViewModel(private val db: NilaiDao) : ViewModel() {
             }
         }
     }
-//    private fun getKategori(nilaiAkhir : Float): KategoriNilai {
-//        val kategori = if (nilaiAkhir >= 81 && nilaiAkhir <=100){
-//            KategoriNilai.A
-//        }else if (nilaiAkhir >= 61 && nilaiAkhir < 80){
-//            KategoriNilai.B
-//        }else if (nilaiAkhir > 41 && nilaiAkhir < 60){
-//            KategoriNilai.C
-//        }else if (nilaiAkhir > 21 && nilaiAkhir < 40){
-//            KategoriNilai.D
-//        }else KategoriNilai.E
-//        return kategori
-//    }
+
     fun getHasilNilai(): LiveData<HasilNilai?> = hasilNilai
     fun mulaiNavigasi() {
         navigasi.value = hasilNilai.value?.nilaiHuruf
     }
+
     fun selesaiNavigasi() {
         navigasi.value = null
     }
-    fun getNavigasi() : LiveData<KategoriNilai?> = navigasi
+
+    fun getNavigasi(): LiveData<KategoriNilai?> = navigasi
 }
-
-
-

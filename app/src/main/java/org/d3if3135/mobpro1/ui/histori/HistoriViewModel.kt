@@ -15,5 +15,4 @@ class HistoriViewModel(private val db: NilaiDao) : ViewModel() {
             db.clearData()
         }
     }
-
 }

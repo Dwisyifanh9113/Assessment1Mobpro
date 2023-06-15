@@ -17,55 +17,70 @@ import org.d3if3135.mobpro1.model.KategoriNilai
 
 class HitungFragment : Fragment() {
 
-    private lateinit var binding : FragmentHitungBinding
+    private lateinit var binding: FragmentHitungBinding
     private val viewModel: HitungViewModel by lazy {
         val db = NilaiDb.getInstance(requireContext())
         val factory = HitungViewModelFactory(db.dao)
-        ViewModelProvider(this,factory)[HitungViewModel::class.java]
+        ViewModelProvider(this, factory)[HitungViewModel::class.java]
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FragmentHitungBinding.inflate(layoutInflater, container, false)
         setHasOptionsMenu(true)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.buttonHitung.setOnClickListener{hitungNilai()}
+        binding.buttonHitung.setOnClickListener { hitungNilai() }
         binding.buttonReset.setOnClickListener { resetHasil() }
         viewModel.getHasilNilai().observe(this, { showResult(it) })
-        binding.saranButton.setOnClickListener {viewModel.mulaiNavigasi()}
+        binding.saranButton.setOnClickListener { viewModel.mulaiNavigasi() }
         viewModel.getNavigasi().observe(viewLifecycleOwner) {
             if (it == null) return@observe
-            findNavController().navigate(HitungFragmentDirections
-                .actionHitungFragmentToSaranFragment(it))
+            findNavController().navigate(
+                HitungFragmentDirections
+                    .actionHitungFragmentToSaranFragment(it)
+            )
             viewModel.selesaiNavigasi()
         }
-        binding.shareButton.setOnClickListener{shareData()}
+        binding.shareButton.setOnClickListener { shareData() }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.options_menu, menu)
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
+        when (item.itemId) {
             R.id.menu_histori -> {
                 findNavController().navigate(
-                R.id.action_hitungFragment_to_historiFragment)
+                    R.id.action_hitungFragment_to_historiFragment
+                )
                 return true
             }
             R.id.menu_about -> {
                 findNavController().navigate(
-                R.id.action_hitungFragment_to_aboutFragment)
-                return true}
+                    R.id.action_hitungFragment_to_aboutFragment
+                )
+                return true
+            }
+            R.id.menu_daftar -> {
+                findNavController().navigate(
+                    R.id.action_hitungFragment_to_daftarFragment
+                )
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }
 
     private fun shareData() {
-        val message = getString(R.string.bagikan_template,
+        val message = getString(
+            R.string.bagikan_template,
             binding.namaInp.text,
             binding.nilaiAkhir.text,
             binding.nilaiHuruf.text
@@ -73,7 +88,9 @@ class HitungFragment : Fragment() {
         val shareIntent = Intent(Intent.ACTION_SEND)
         shareIntent.setType("text/plain").putExtra(Intent.EXTRA_TEXT, message)
         if (shareIntent.resolveActivity(
-                requireActivity().packageManager) != null) {
+                requireActivity().packageManager
+            ) != null
+        ) {
             startActivity(shareIntent)
         }
     }
@@ -123,12 +140,12 @@ class HitungFragment : Fragment() {
         )
     }
 
-    private fun showResult(result: HasilNilai?){
+    private fun showResult(result: HasilNilai?) {
         if (result == null) return
         binding.buttonReset.visibility = View.VISIBLE
         binding.buttonGroup.visibility = View.VISIBLE
         binding.nilaiAkhir.text = getString(R.string.nilaiAkhir, result.nilaiAkhir)
-        binding.nilaiHuruf.text = getString(R.string.nilaiHuruf,result.nilaiHuruf)
+        binding.nilaiHuruf.text = getString(R.string.nilaiHuruf, result.nilaiHuruf)
         binding.nilaiAkhir.visibility = View.VISIBLE
         binding.nilaiHuruf.visibility = View.VISIBLE
     }

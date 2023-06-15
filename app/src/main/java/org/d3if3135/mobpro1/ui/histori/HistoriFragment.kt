@@ -21,7 +21,6 @@ class HistoriFragment : Fragment() {
         ViewModelProvider(this, factory)[HistoriViewModel::class.java]
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,10 +44,12 @@ class HistoriFragment : Fragment() {
 
         }
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.histori_menu, menu)
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_hapus) {
             hapusData()
@@ -56,6 +57,7 @@ class HistoriFragment : Fragment() {
         }
         return super.onOptionsItemSelected(item)
     }
+
     private fun hapusData() {
         MaterialAlertDialogBuilder(requireContext())
             .setMessage(R.string.konfirmasi_hapus)
@@ -68,5 +70,3 @@ class HistoriFragment : Fragment() {
             .show()
     }
 }
-
-

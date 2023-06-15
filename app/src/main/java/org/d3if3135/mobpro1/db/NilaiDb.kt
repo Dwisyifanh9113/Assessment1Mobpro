@@ -8,6 +8,7 @@ import androidx.room.RoomDatabase
 @Database(entities = [NilaiEntity::class], version = 1, exportSchema = false)
 abstract class NilaiDb : RoomDatabase() {
     abstract val dao: NilaiDao
+
     companion object {
         @Volatile
         private var INSTANCE: NilaiDb? = null

@@ -14,4 +14,3 @@ data class NilaiEntity(
     var tugas: Float,
     var asesmen: Float
 )
-

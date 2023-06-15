@@ -6,6 +6,7 @@
     android:layout_margin="16dp"
     android:orientation="vertical"
     android:weightSum="2">
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
@@ -13,6 +14,7 @@
         android:layout_weight="1"
         android:contentDescription="@null"
         tools:src="@drawable/a" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"

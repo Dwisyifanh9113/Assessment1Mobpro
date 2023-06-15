@@ -13,9 +13,11 @@ import org.d3if3135.mobpro1.model.KategoriNilai
 
 class SaranFragment : Fragment() {
     private lateinit var binding: FragmentSaranBinding
-    private val args : SaranFragmentArgs by navArgs()
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    private val args: SaranFragmentArgs by navArgs()
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FragmentSaranBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -23,7 +25,7 @@ class SaranFragment : Fragment() {
     private fun updateUI(kategori: KategoriNilai) {
         val actionBar = (requireActivity() as AppCompatActivity).supportActionBar
         when (kategori) {
-            KategoriNilai.A-> {
+            KategoriNilai.A -> {
                 actionBar?.title = getString(R.string.nilai_a)
                 binding.imageView.setImageResource(R.drawable.a)
                 binding.textView.text = getString(R.string.saran_a)
@@ -50,8 +52,8 @@ class SaranFragment : Fragment() {
             }
         }
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         updateUI(args.kategori)
     }
-
 }
